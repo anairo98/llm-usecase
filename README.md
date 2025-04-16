@@ -64,7 +64,7 @@ ollama pull
 3. Access AnythingLLM by using the link provided by the route
     1. Select *Ollama* as the LLM provider
     2. Enter the Ollama Base URL, http link where the ollama model is running > http://HOSTNAME:PORT
-    ![Ollama Base URL](ollana_svc.png)
+    ![Ollama Base URL](ollama_svc.png)
 
     > Maybe this could take a moment, until the drop-down for selecting an ollama model is working - Give it a sec! 
 
@@ -77,7 +77,7 @@ ollama pull
         - Set the Vector Database (You need to enter the address, where the milvus service is running http://HOSTNAME:PORT and the credentials to login into Milvus)
         - Customize the Appearance of the User Interface
 
-> If the you deployed the pod by using the image from the official Red Hat repository, you need to set the target port to 8888 (The target Port 8888 is configured to be the target port in the configs and the specific Dockerfile of the official repository - link above) 
+> If you deployed the pod by using the image from the official Red Hat repository, you need to set the target port to 8888 (The target Port 8888 is configured to be the target port in the configs and the specific Dockerfile of the official repository - link above) 
 
 
 
