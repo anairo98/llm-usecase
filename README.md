@@ -27,10 +27,15 @@ Original Repository: [Milvus Repository](https://github.com/rh-aiservices-bu/llm
 
 > All resources should be created succesfully and al pods should run without any errors
 
+4. When the attu Pod is deployed and everything is running, you can click on the route to the attu website. Login with the Enter *http://HOSTNAME:PORT* and the Milvus credntials 
+    - There is only one User created, it is the *root* user with the password *Milvus* 
+    - The User Credentials can be looked up in the original repository (linked above)
+
 ## Deploy Minio Instance
 
 1. Create a new namespace/ project in Openshift for the Minio instance
 2. create Deployment from the manifests file *minio_manifest.yaml*
+    - In Openshift: *+Add* by *Import Yaml*
 
 ## Deploy Ollama Instance
 
@@ -49,5 +54,31 @@ ollama list
 ## pull a new model from the repo
 ollama pull
 ```
+
+## Deploy GUI with *anythingllm*
+
+1. Create a new namespace/project in Openshift for the AnytingLLM instance
+2. Create the Pod by using the manifest file *anythingllm_manifest.yaml* or create the pod from the image from the repository [RH Repository](https://quay.io/repository/rh-aiservices-bu/anythingllm-workbench?tab=tags&tag=1.7.5)
+    	- In Openshift: *+Add* by *Container Images*
+
+3. Access AnythingLLM by using the link provided by the route
+    1. Select *Ollama* as the LLM provider
+    2. Enter the Ollama Base URL, http link where the ollama model is running > http://HOSTNAME:PORT
+    ![Ollama Base URL](ollana_svc.png)
+
+    > Maybe this could take a moment, until the drop-down for selecting an ollama model is working - Give it a sec! 
+
+    3. Select the right Ollama Model, which is present inside the ollama Service (Keep in mind that you need to pull images into the Pod in OpenShift first)
+    ![anythingllm](anythingllm.png)
+    4. Set up your user account with an password, email-address and so on ...
+    5. Create your own Workspace and give it a name
+    6. Go to Settings and set some configs...
+        - Set the Embedding Model (One of the pulled ollama models)
+        - Set the Vector Database (You need to enter the address, where the milvus service is running http://HOSTNAME:PORT and the credentials to login into Milvus)
+        - Customize the Appearance of the User Interface
+
+> If the you deployed the pod by using the image from the official Red Hat repository, you need to set the target port to 8888 (The target Port 8888 is configured to be the target port in the configs and the specific Dockerfile of the official repository - link above) 
+
+
 
 
